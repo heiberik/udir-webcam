@@ -23,8 +23,10 @@ app.use(express.json())
 console.log("DIRNAME: ", __dirname);
 console.log("DIRNAME2: ", __dirname2);
 
-app.use(express.static(path.resolve(__dirname2, "build")));
-
+app.use(express.static(path.join(__dirname, '/../client/build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+})
 
 io.on("connection", (socket) => {
 
