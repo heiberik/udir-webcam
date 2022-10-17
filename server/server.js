@@ -11,7 +11,7 @@ const __dirname = dirname(__filename);
 const app = express()
 const httpServer = createServer(app)
 
-const io = new Server(httpServer, { cors: { origin: '*' } })
+const io = new Server(httpServer, { maxHttpBufferSize: 199e6 , cors: { origin: '*' } })
 
 app.use(cors())
 app.use(express.json())
@@ -31,8 +31,7 @@ io.on("connection", (socket) => {
 
     socket.on('sendData', function(data) {
 
-        console.log("Server got data: ", data);
-        io.to(data.room).emit("sendImageToPCI", {image: data.text})
+        io.to(data.room).emit("sendImageToPCI", {image: data.image})
     });
 
     socket.on("disconnect", () => { })

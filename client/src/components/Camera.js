@@ -1,5 +1,9 @@
 import io from 'socket.io-client'
 import { useParams } from 'react-router-dom'
+import { Camera as CameraWidget,  FACING_MODES, IMAGE_TYPES  } from 'react-html5-camera-photo'
+import 'react-html5-camera-photo/build/css/index.css'
+
+
 const socket = io()
 
 const Camera = () => {
@@ -7,7 +11,10 @@ const Camera = () => {
     const { id } = useParams()
 
     const cameraContainer = {
-        padding: "5rem"
+        backgroundColor: "red",
+        position: "absolute",
+        top: "0",
+        height: "100vh"
     }
 
     const buttonStyle = {
@@ -19,20 +26,31 @@ const Camera = () => {
     }
 
 
-    const clickHandler = () => {
+    const handleTakePhoto = (dataUri) => {
+
+        console.log(dataUri);
 
         socket.emit('joinRoom', id);
 
-        socket.once("sendImageToPCI", function(data){
+        socket.once("sendImageToPCI", function(data) {
             console.log("DATA: ", data);
         })
 
-        socket.emit("sendData", {text: "Dette er en melding med data!", room: id})
+        socket.emit("sendData", { image: dataUri, room: id })
     }
 
     return (
-        <main style={cameraContainer}>
-            <button style={buttonStyle} onClick={clickHandler}> Send message </button>
+        <main>
+            <div style={cameraContainer}>
+                <CameraWidget
+                    isFullscreen={true}
+                    idealFacingMode={FACING_MODES.ENVIRONMENT}
+                    idealResolution={{ width: 640, height: 480 }}
+                    isMaxResolution={true}
+                    onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
+                />
+            </div>
+
         </main>
     )
 }
