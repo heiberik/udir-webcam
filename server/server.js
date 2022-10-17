@@ -9,6 +9,9 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const __dirname2 = path.resolve();
+
+
 const app = express()
 const httpServer = createServer()
 
@@ -18,7 +21,9 @@ app.use(cors())
 app.use(express.json())
 
 console.log("DIRNAME: ", __dirname);
-app.use(express.static(path.resolve(__dirname, "build")));
+console.log("DIRNAME2: ", __dirname2);
+
+app.use(express.static(path.resolve(__dirname2, "build")));
 
 
 io.on("connection", (socket) => {
