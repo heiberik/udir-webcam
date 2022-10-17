@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
