@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 import { useParams } from 'react-router-dom'
-const socket = io(`http://${window.location.hostname}:3002`)
+const socket = io()
 
 const Camera = () => {
 
