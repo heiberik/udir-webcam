@@ -5,13 +5,17 @@
     "main": "./server/server.js",
     "scripts": {
         "heroku-postbuild": "cd ./client && npm install && npm run build",
-        "build_frontendWin": "rmdir /s /q build && cd ./client && npm run build && xcopy build ..\\build /s /e /y /i",
-        "deployWin": "npm run build_frontendWin && git add . && git commit -m uibuild && git push"
+        "deploy": "git add . && git commit -m uibuild && git push",
+        "client": "cd ./client && npm start",
+        "server": "nodemon ./server/server.js",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "start": "node ./server/server.js"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/heiberik/udir-webcam.git"
     },
+    "type": "module",
     "author": "",
     "license": "ISC",
     "dependencies": {
