@@ -10,6 +10,8 @@ const __dirname = path.dirname(__filename)
 const app = express()
 const httpServer = createServer()
 
+console.log(__dirname);
+
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, "./client/build")))
