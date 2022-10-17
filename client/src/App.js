@@ -8,7 +8,6 @@ const App = () => {
     return (
         <div className="App">
             <BrowserRouter>
-                <Header />
                 <Routes>
                     <Route path="/:id" element={
                         <Camera />
