@@ -46,13 +46,13 @@ const Camera = () => {
 
                 {!active && <div style={containerStyle}>
 
-                    <button style={buttonStyle} onClick={() => setActive(a => !a)}> Legg til bilde </button>
-
-                    </div>}
+                    <button style={buttonStyle} onClick={() => setActive(a => !a)}> Legg til bilde </button></div>}
                 {active && <CameraWidget
                     isFullscreen={true}
                     idealFacingMode={FACING_MODES.ENVIRONMENT}
                     idealResolution={{ width: 640, height: 480 }}
+                    imageCompression={0.2}
+                    imageType={IMAGE_TYPES.JPG}
                     isMaxResolution={true}
                     onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
                 />}
