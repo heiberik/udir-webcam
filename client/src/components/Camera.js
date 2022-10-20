@@ -14,11 +14,11 @@ const Camera = ({ withId }) => {
     const { id } = useParams()
     const navigate = useNavigate();
 
-
     useEffect(() => {
         if (!socket) setSocket(io())
         if (withId && socket) socket.emit('joinRoom', id);
     }, [socket, withId, id])
+
 
     const containerStyle = {
         backgroundColor: "ghostwhite",
@@ -32,8 +32,19 @@ const Camera = ({ withId }) => {
     const buttonStyle = {
         padding: "1rem 2rem",
         borderRadius: "1rem",
-        border: "solid 1px lightgreen",
+        border: "solid 2px lightgreen",
         backgroundColor: "lightgreen",
+        fontSize: "1.5rem",
+        width: "80vw",
+        margin: "1rem",
+        height: "fit-content"
+    }
+
+    const buttonNewCandStyle = {
+        padding: "1rem 2rem",
+        borderRadius: "1rem",
+        border: "solid 2px lightgreen",
+        backgroundColor: "ghostwhite",
         fontSize: "1.5rem",
         width: "80vw",
         margin: "1rem",
@@ -126,7 +137,7 @@ const Camera = ({ withId }) => {
 
                 {!active && <div style={containerStyle}>
                     <button style={buttonStyle} onClick={() => setActive(a => !a)}> Legg til bilde </button>
-                    <button style={buttonStyle} onClick={() => setScanningQr(true)}> Ny kandidat </button>
+                    <button style={buttonNewCandStyle} onClick={() => setScanningQr(true)}> Skan ny QR-kode </button>
                 </div>}
                 {active && <>
                 <button style={stopButtonStyle} onClick={() => {setActive(false); setScanningQr(false)}}> Tilbake </button>
