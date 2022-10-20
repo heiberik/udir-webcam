@@ -71,7 +71,7 @@ const Camera = ({ withId }) => {
     const qrTextStyle = {
         zIndex: "99999",
         position: "absolute",
-        bottom: "25%",
+        bottom: "10%",
         backgroundColor: "lightgreen",
         padding: "1rem",
         borderRadius: "1rem",
