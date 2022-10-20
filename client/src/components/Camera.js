@@ -112,6 +112,8 @@ const Camera = ({ withId }) => {
                     delay={0}
                     facingMode={"rear"}
                     style={videoStyle}
+                    key="environment"
+                    constraints={{ facingMode: 'environment' }}
             />
             </div>
             
@@ -142,7 +144,7 @@ const Camera = ({ withId }) => {
                     isMaxResolution={true}
                     onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
                 />
-                </>}
+            </>}
 
         </>
     )
