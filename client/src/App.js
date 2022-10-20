@@ -1,8 +1,7 @@
+import React from 'react'
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Camera from './components/Camera';
-import Header from './components/Header';
-import Hello from './components/Hello';
+import Camera from './components/Camera'
 
 const App = () => {
     return (
@@ -10,10 +9,10 @@ const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/:id" element={
-                        <Camera />
+                        <Camera withId={true} />
                     } />
                     <Route path="/" element={
-                        <Hello />
+                        <Camera withId={false} />
                     } />
                 </Routes>
             </BrowserRouter>
