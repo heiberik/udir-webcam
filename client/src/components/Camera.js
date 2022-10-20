@@ -18,7 +18,7 @@ const Camera = ({ withId }) => {
     useEffect(() => {
         if (!socket) setSocket(io())
         if (withId && socket) socket.emit('joinRoom', id);
-    }, [])
+    }, [socket, withId, id])
 
     const containerStyle = {
         backgroundColor: "ghostwhite",
@@ -57,7 +57,8 @@ const Camera = ({ withId }) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh"
+        height: "100vh",
+        width: "100vw"
     }
 
     const videoStyle = {
@@ -70,7 +71,7 @@ const Camera = ({ withId }) => {
     const qrTextStyle = {
         zIndex: "99999",
         position: "absolute",
-        bottom: "5%",
+        bottom: "25%",
         backgroundColor: "lightgreen",
         padding: "1rem",
         borderRadius: "1rem",
@@ -97,16 +98,14 @@ const Camera = ({ withId }) => {
         }
     }
 
-    const handleError = (e) => {
-        console.log(e);
-    }
-
     if (scanningQr){
         return (
             <div style={qrContainer}>
                 <button style={stopButtonStyle} onClick={() => {setActive(false); setScanningQr(false)}}> Tilbake </button>
                 <p style={qrTextStyle}> Scan QR-koden.</p>
                 <QrReader 
+                    containerStyle={qrContainer}
+                    videoContainerStyle={qrContainer}
                     onResult={(data) => handleScan(data)}
                     videoStyle={videoStyle}
                     constraints={{ facingMode: 'environment' }}
