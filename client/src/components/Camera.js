@@ -110,6 +110,7 @@ const Camera = ({ withId }) => {
                     onScan={(data) => handleScan(data)}
                     onError={(err) => handleError(err)}
                     delay={0}
+                    facingMode={"rear"}
                     style={videoStyle}
             />
             </div>
