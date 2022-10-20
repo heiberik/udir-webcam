@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import { useParams } from 'react-router-dom'
 import { Camera as CameraWidget,  FACING_MODES, IMAGE_TYPES  } from 'react-html5-camera-photo'
 import 'react-html5-camera-photo/build/css/index.css'
-import QrReader from 'react-qr-scanner'
+import { QrReader } from 'react-qr-reader';
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
@@ -107,12 +107,8 @@ const Camera = ({ withId }) => {
                 <button style={stopButtonStyle} onClick={() => {setActive(false); setScanningQr(false)}}> Tilbake </button>
                 <p style={qrTextStyle}> Scan QR-koden.</p>
                 <QrReader 
-                    onScan={(data) => handleScan(data)}
-                    onError={(err) => handleError(err)}
-                    delay={0}
-                    facingMode={"rear"}
-                    style={videoStyle}
-                    key="environment"
+                    onResult={(data) => handleScan(data)}
+                    videoStyle={videoStyle}
                     constraints={{ facingMode: 'environment' }}
             />
             </div>
