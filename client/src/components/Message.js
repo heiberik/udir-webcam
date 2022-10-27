@@ -15,7 +15,7 @@ const Message = ({ message, setMessage }) => {
         justifyContent: "center", 
         alignItems: "center",
         position: "absolute",
-        bottom: "5vw",
+        top: "5vw",
         left: "5vw",
         width: "calc(90vw - 4rem)",
         backgroundColor: "lightgreen",
