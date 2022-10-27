@@ -24,6 +24,10 @@ body {
     position: relative;
 }
 
+.App .react-html5-camera-photo-fullscreen>video {
+    object-fit: cover;
+}
+
 button {
     cursor: pointer;
     color: black;
