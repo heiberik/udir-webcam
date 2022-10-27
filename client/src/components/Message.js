@@ -1,0 +1,40 @@
+import { useEffect } from "react"
+import { FaCheck } from 'react-icons/fa';
+
+
+const Message = ({ message, setMessage }) => {
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMessage(null)
+        }, 6000)
+    }, [])
+
+    const containerStyle = {
+        display: "flex",
+        justifyContent: "center", 
+        alignItems: "center",
+        position: "absolute",
+        bottom: "5vw",
+        left: "5vw",
+        width: "calc(90vw - 4rem)",
+        backgroundColor: "lightgreen",
+        borderRadius: "1rem",
+        padding: "1rem 2rem"
+    }
+
+
+    const textStyle = {
+        marginLeft: "1rem"
+    }
+
+    return (
+       <div style={containerStyle}>
+            <FaCheck size="2rem" color="green"/>
+            <p style={textStyle}> {message} </p>
+       </div>
+    )
+}
+
+export default Message
+

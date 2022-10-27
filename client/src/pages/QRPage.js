@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { QrReader } from 'react-qr-reader'
 
-const QRPage = () => {
+const QRPage = ({ setMessage }) => {
 
     const navigate = useNavigate();
 
@@ -51,6 +51,7 @@ const QRPage = () => {
             const id = split[split.length - 1]
             if (id) {
                 navigate("/" + id)
+                setMessage("Koblet til ny kandidat. Du kan nå legge til bilder.")
             }
         }
     }

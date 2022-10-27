@@ -37,7 +37,7 @@ const Buttons = ({ camActive, setCamActive }) => {
 
     return (
        <div style={containerStyle}>
-            <button style={buttonStyle} onClick={() => {setCamActive(true)}}> Legg til bilde </button>
+            <button style={buttonStyle} onClick={() => {setCamActive(true)}}> Legg til nytt bilde </button>
             <button style={buttonNewCandStyle} onClick={() => {navigate("/qr")}}> Skan ny QR-kode </button>
        </div>
     )

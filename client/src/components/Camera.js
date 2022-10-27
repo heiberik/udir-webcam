@@ -3,7 +3,7 @@ import { Camera as CameraWidget,  FACING_MODES, IMAGE_TYPES  } from 'react-html5
 import 'react-html5-camera-photo/build/css/index.css'
 
 
-const Camera = ({ camActive, setCamActive, socket }) => {
+const Camera = ({ camActive, setCamActive, socket, setMessage }) => {
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -20,9 +20,16 @@ const Camera = ({ camActive, setCamActive, socket }) => {
     }
 
     const handleTakePhoto = (dataUri) => {
+
         socket.emit("sendData", { image: dataUri, room: id })
-        if (!dataUri) window.alert("Bildet ble ikke sendt.")
         setCamActive(false)
+
+        if (!dataUri) window.alert("Bildet ble ikke sendt.")
+        if (dataUri) setMessage("Bildet ble sendt til kandidat.")
+    }
+
+    const handleCamError = (err) => {
+        window.alert("err")
     }
 
     return (
@@ -35,6 +42,7 @@ const Camera = ({ camActive, setCamActive, socket }) => {
                 imageType={IMAGE_TYPES.JPG}
                 isMaxResolution={true}
                 onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
+                onCameraError={(err) => {handleCamError(err)}}
             />
         </>
     )
