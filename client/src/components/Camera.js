@@ -144,10 +144,8 @@ const Camera = ({ withId }) => {
                 <CameraWidget 
                     isFullscreen={true}
                     idealFacingMode={FACING_MODES.ENVIRONMENT}
-                    idealResolution={{ width: 640, height: 480 }}
                     imageCompression={0.4}
                     imageType={IMAGE_TYPES.JPG}
-                    isMaxResolution={true}
                     onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
                 />
             </>}
