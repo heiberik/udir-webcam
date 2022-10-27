@@ -146,6 +146,7 @@ const Camera = ({ withId }) => {
                     idealFacingMode={FACING_MODES.ENVIRONMENT}
                     imageCompression={0.4}
                     imageType={IMAGE_TYPES.JPG}
+                    isMaxResolution={true}
                     onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
                 />
             </>}
