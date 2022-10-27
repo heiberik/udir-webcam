@@ -113,7 +113,8 @@ const Camera = ({ withId }) => {
 
     if (scanningQr){
         return (
-            <DeviceOrientation lockOrientation={'portrait'}>
+            <>
+            <Orientation orientation='portrait' alwaysRender={false}>
                 <div style={qrContainer}>
                     <button style={stopButtonStyle} onClick={() => {setActive(false); setScanningQr(false)}}> Tilbake </button>
                     <p style={qrTextStyle}> Scan QR-koden.</p>
@@ -124,8 +125,13 @@ const Camera = ({ withId }) => {
                         videoStyle={videoStyle}
                         constraints={{ facingMode: 'environment' }} />
                 </div>
-            </DeviceOrientation>
+                </Orientation>
+                <Orientation orientation='landscape'>
+                    <p> Bruk portrettmodus</p>
+            </Orientation>
+            </>
         )
+        
     }
     if (!withId){
         return (
@@ -136,7 +142,7 @@ const Camera = ({ withId }) => {
     }
     return (
         <>
-            <DeviceOrientation lockOrientation={'portrait'}>
+            <Orientation orientation='portrait'>
                 {!active && <div style={containerStyle}>
                     <button style={buttonStyle} onClick={() => setActive(a => !a)}> Legg til bilde </button>
                     <button style={buttonNewCandStyle} onClick={() => setScanningQr(true)}> Skan ny QR-kode </button>
@@ -152,7 +158,10 @@ const Camera = ({ withId }) => {
                     onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
                 />
             </>}
-            </DeviceOrientation>
+            </Orientation>
+            <Orientation orientation='landscape'>
+                    <p> Bruk portrettmodus</p>
+            </Orientation>
         </>
     )
 }
