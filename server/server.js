@@ -16,9 +16,11 @@ const io = new Server(httpServer, { maxHttpBufferSize: 199e6, cors: { origin: '*
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '/../client/build')))
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname + '/../client/build/index.html')))
+if (process.env.PORT) {
+    app.use(express.static(path.join(__dirname, '/../client/build')))
+    app.get('*', (req, res) => res.sendFile(path.join(__dirname + '/../client/build/index.html')))
+}
 
 io.on("connection", (socket) => {
 
