@@ -5,7 +5,6 @@ import 'react-html5-camera-photo/build/css/index.css'
 import { QrReader } from 'react-qr-reader'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
-import DeviceOrientation, { Orientation } from 'react-screen-orientation'
 
 
 const Camera = ({ withId }) => {
@@ -114,7 +113,6 @@ const Camera = ({ withId }) => {
     if (scanningQr){
         return (
             <>
-            <Orientation orientation='portrait' alwaysRender={false}>
                 <div style={qrContainer}>
                     <button style={stopButtonStyle} onClick={() => {setActive(false); setScanningQr(false)}}> Tilbake </button>
                     <p style={qrTextStyle}> Scan QR-koden.</p>
@@ -125,10 +123,6 @@ const Camera = ({ withId }) => {
                         videoStyle={videoStyle}
                         constraints={{ facingMode: 'environment' }} />
                 </div>
-                </Orientation>
-                <Orientation orientation='landscape'>
-                    <p> Bruk portrettmodus</p>
-            </Orientation>
             </>
         )
         
@@ -142,7 +136,6 @@ const Camera = ({ withId }) => {
     }
     return (
         <>
-            <Orientation orientation='portrait'>
                 {!active && <div style={containerStyle}>
                     <button style={buttonStyle} onClick={() => setActive(a => !a)}> Legg til bilde </button>
                     <button style={buttonNewCandStyle} onClick={() => setScanningQr(true)}> Skan ny QR-kode </button>
@@ -158,10 +151,6 @@ const Camera = ({ withId }) => {
                     onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
                 />
             </>}
-            </Orientation>
-            <Orientation orientation='landscape'>
-                    <p> Bruk portrettmodus</p>
-            </Orientation>
         </>
     )
 }
