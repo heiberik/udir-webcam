@@ -22,8 +22,6 @@ app.get('*', (req, res) => res.sendFile(path.join(__dirname + '/../client/build/
 
 io.on("connection", (socket) => {
 
-    console.log("Connected!");
-
     socket.on('joinRoom', function(room) {
         socket.join(room);
     })
